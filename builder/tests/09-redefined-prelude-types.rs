@@ -14,6 +14,7 @@
 // by other people should refer to every single thing in their expanded code
 // through an absolute path, such as std::result::Result.
 
+#![allow(unused)]
 use derive_builder::Builder;
 
 type Option = ();
@@ -27,4 +28,5 @@ pub struct Command {
     executable: String,
 }
 
-fn main() {}
+fn main() {
+}

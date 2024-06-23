@@ -1,13 +1,14 @@
 // This test case should be a freebie if the previous ones are already working.
 // It shows that we can chain method calls on the builder.
 
+#![allow(unused)]
 use derive_builder::Builder;
 
 #[derive(Builder)]
 pub struct Command {
-    executable: String,
-    args: Vec<String>,
-    env: Vec<String>,
+    executable:  String,
+    args:        Vec<String>,
+    env:         Vec<String>,
     current_dir: String,
 }
 
