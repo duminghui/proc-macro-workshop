@@ -154,7 +154,7 @@ fn generate_build_function(
         .map(|f| {
             let ident = &f.ident;
             let ty = &f.ty;
-            let stmt = if get_optional_inner_type(ty).is_none()
+            let stmt = if get_generic_inner_type(ty, "Option").is_none()
                 && get_user_specified_ident_for_vec(f)?.is_none()
             {
                 quote! {
@@ -180,7 +180,7 @@ fn generate_build_function(
                 quote! {
                     #ident: self.#ident.clone()
                 }
-            } else if get_optional_inner_type(ty).is_none() {
+            } else if get_generic_inner_type(ty, "Option").is_none() {
                 quote! {
                     #ident: self.#ident.clone().unwrap()
                 }
@@ -204,26 +204,6 @@ fn generate_build_function(
         }
     };
     Ok(token_stream)
-}
-
-fn get_optional_inner_type(ty: &syn::Type) -> Option<&syn::Type> {
-    if let syn::Type::Path(syn::TypePath { ref path, .. }) = ty {
-        // 这里我们取segments的最后一节来判断是不是`Option<T>`，这样如果用户写的是`std:option:Option<T>`我们也能识别出最后的`Option<T>`
-        if let Some(seg) = path.segments.last() {
-            if seg.ident == "Option" {
-                if let syn::PathArguments::AngleBracketed(syn::AngleBracketedGenericArguments {
-                    ref args,
-                    ..
-                }) = seg.arguments
-                {
-                    if let Some(syn::GenericArgument::Type(inner_ty)) = args.first() {
-                        return Some(inner_ty);
-                    }
-                }
-            }
-        }
-    }
-    None
 }
 
 fn get_generic_inner_type<'a>(ty: &'a syn::Type, outer_ident_name: &str) -> Option<&'a syn::Type> {
