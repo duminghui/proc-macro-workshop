@@ -14,12 +14,14 @@
 //   - An example of a derive macro implemented using Syn:
 //     https://github.com/dtolnay/syn/tree/master/examples/heapsize
 
+#![allow(unused)]
 use derive_debug::CustomDebug;
 
 #[derive(CustomDebug)]
 pub struct Field {
-    name: &'static str,
+    name:    &'static str,
     bitmask: u16,
 }
 
-fn main() {}
+fn main() {
+}

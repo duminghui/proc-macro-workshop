@@ -48,21 +48,24 @@
 // that correctly calls String's Debug impl despite having no way to know that
 // the word "S" in its input refers to the type String.
 
-use derive_debug::CustomDebug;
+#![allow(unused)]
 use std::fmt::Debug;
 use std::marker::PhantomData;
+
+use derive_debug::CustomDebug;
 
 type S = String;
 
 #[derive(CustomDebug)]
 pub struct Field<T> {
-    marker: PhantomData<T>,
-    string: S,
+    marker:  PhantomData<T>,
+    string:  S,
     #[debug = "0b{:08b}"]
     bitmask: u8,
 }
 
-fn assert_debug<F: Debug>() {}
+fn assert_debug<F: Debug>() {
+}
 
 fn main() {
     // Does not implement Debug.

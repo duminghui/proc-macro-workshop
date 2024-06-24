@@ -21,18 +21,19 @@
 //   - Macro for applying a format string to some runtime value:
 //     https://doc.rust-lang.org/std/macro.format_args.html
 
+#![allow(unused)]
 use derive_debug::CustomDebug;
 
 #[derive(CustomDebug)]
 pub struct Field {
-    name: &'static str,
+    name:    &'static str,
     #[debug = "0b{:08b}"]
     bitmask: u8,
 }
 
 fn main() {
     let f = Field {
-        name: "F",
+        name:    "F",
         bitmask: 0b00011100,
     };
 

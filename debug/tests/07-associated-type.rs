@@ -19,8 +19,10 @@
 //   - The relevant types in the input will be represented in this syntax tree
 //     node: https://docs.rs/syn/2.0/syn/struct.TypePath.html
 
-use derive_debug::CustomDebug;
+#![allow(unused)]
 use std::fmt::Debug;
+
+use derive_debug::CustomDebug;
 
 pub trait Trait {
     type Value;
@@ -31,7 +33,8 @@ pub struct Field<T: Trait> {
     values: Vec<T::Value>,
 }
 
-fn assert_debug<F: Debug>() {}
+fn assert_debug<F: Debug>() {
+}
 
 fn main() {
     // Does not implement Debug, but its associated type does.

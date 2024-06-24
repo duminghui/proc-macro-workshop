@@ -75,13 +75,15 @@
 // signatures, as well as trait bounds on impls of public traits for public
 // types.
 
-use derive_debug::CustomDebug;
+#![allow(unused)]
 use std::fmt::Debug;
+
+use derive_debug::CustomDebug;
 
 #[derive(CustomDebug)]
 pub struct One<T> {
     value: T,
-    two: Option<Box<Two<T>>>,
+    two:   Option<Box<Two<T>>>,
 }
 
 #[derive(CustomDebug)]
@@ -89,7 +91,8 @@ struct Two<T> {
     one: Box<One<T>>,
 }
 
-fn assert_debug<F: Debug>() {}
+fn assert_debug<F: Debug>() {
+}
 
 fn main() {
     assert_debug::<One<u8>>();

@@ -15,17 +15,18 @@
 //   - The DebugStruct helper for formatting structs correctly:
 //     https://doc.rust-lang.org/std/fmt/struct.DebugStruct.html
 
+#![allow(unused)]
 use derive_debug::CustomDebug;
 
 #[derive(CustomDebug)]
 pub struct Field {
-    name: &'static str,
+    name:    &'static str,
     bitmask: u8,
 }
 
 fn main() {
     let f = Field {
-        name: "F",
+        name:    "F",
         bitmask: 0b00011100,
     };
 

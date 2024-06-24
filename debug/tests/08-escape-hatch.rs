@@ -27,8 +27,10 @@
 //         normal: U,
 //     }
 
-use derive_debug::CustomDebug;
+#![allow(unused)]
 use std::fmt::Debug;
+
+use derive_debug::CustomDebug;
 
 pub trait Trait {
     type Value;
@@ -45,7 +47,8 @@ struct Field<T: Trait> {
     values: Vec<T::Value>,
 }
 
-fn assert_debug<F: Debug>() {}
+fn assert_debug<F: Debug>() {
+}
 
 fn main() {
     struct Id;

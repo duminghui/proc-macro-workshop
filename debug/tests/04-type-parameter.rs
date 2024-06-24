@@ -18,18 +18,19 @@
 //   - Example code from Syn which deals with type parameters:
 //     https://github.com/dtolnay/syn/tree/master/examples/heapsize
 
+#![allow(unused)]
 use derive_debug::CustomDebug;
 
 #[derive(CustomDebug)]
 pub struct Field<T> {
-    value: T,
+    value:   T,
     #[debug = "0b{:08b}"]
     bitmask: u8,
 }
 
 fn main() {
     let f = Field {
-        value: "F",
+        value:   "F",
         bitmask: 0b00011100,
     };
 
